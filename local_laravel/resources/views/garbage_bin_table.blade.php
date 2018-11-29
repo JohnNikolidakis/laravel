@@ -1,21 +1,9 @@
 @extends('layouts.app')
-
 @section('content')
 <head>
 <script type="text/javascript" src="//unpkg.com/file-saver@1.3.3/FileSaver.js"></script>
 <script type="text/javascript" src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
 </head>
-<style>
-	.title_td
-	{
-		font-weight:1000;
-		font-size:26px;
-	}
-	.td_sub
-	{
-		font-size:13px;
-	}
-</style>
 <div class="table-responsive">
 	<table class="table table-bordered table-striped" style="text-align:center;" id="data-table">
 		<tr>
@@ -23,7 +11,7 @@
 			<td class="title_td">Capacity</td>
 		</tr>
 		@foreach($bin as $bins)
-		<tr>
+		<tr {{ ($loop->first) ? "class=d-print-table-row" : "class=d-print-none" }}>
 			<td id='licence' class="td_sub">{{ $bins->type }}</td>
 			<td id='liters' class="td_sub">{{ $bins->capacity }}</td>
 		</tr>

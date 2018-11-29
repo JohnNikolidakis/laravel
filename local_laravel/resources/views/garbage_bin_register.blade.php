@@ -4,14 +4,14 @@
 <form method="GET" action="garbage_bin_table" class="needs-validation"  novalidate>
 	<div class="form-row">
 		<div class="col-sm-5">
-			<input type="text" name="type" class="form-control" placeholder="Type" required>
+			<input type="text" name="type" class="form-control mb-2 ml-2" placeholder="Type" required>
 		</div>
 		<div class="col-sm-5">
-			<input type="number" name="capacity" class="form-control" placeholder="Capacity" required>
+			<input type="number" name="capacity" class="form-control ml-2" placeholder="Capacity" required>
 		</div>
 	</div>
 	<div class="form-row">
-		<input type="submit" name="submit" value="Submit" class="btn btn-primary">
+		<input type="submit" name="submit" value="Submit" class="btn btn-primary ml-3">
 	</div>
 </form>
 @endsection
@@ -36,6 +36,4 @@
     });
   }, false);
 })();
-
-
 </script>

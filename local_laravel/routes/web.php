@@ -22,7 +22,7 @@ Route::get('/table','RegisterController@store')->middleware('auth');
 	Route::get('/garbage_register','GarbageRegisterController@create')->middleware('auth');
 
 	Route::get('/garbage_bin_table','GarbageRegisterController@store')->middleware('auth');
-
+	
 Route::fallback(function() {
 	return view('not_found');
 })->middleware('auth');

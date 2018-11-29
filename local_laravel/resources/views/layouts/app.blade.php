@@ -13,79 +13,70 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<style>
+	.title_td
+	{
+		font-weight:1000;
+		font-size:26px;
+	}
+	.td_sub
+	{
+		font-size:13px;
+	}
+	</style>
 </head>
 <body>
-
-<div class="collapse" id="toggleBar">
-    <div id="app wrapper">
-        <nav class="navbar navbar-expand-md navbar-laravel navbar-dark bg-dark	">
-            <div class="container">
-				<ul class="list-unstyled navbar-nav">
-					<li class="nav-item"> 
-						<a href="{{ url('/') }}" class="navbar-brand">Laravel</a>
+<div>
+	<nav class="d-print-flex navbar navbar-expand-md navbar-laravel navbar-dark bg-primary ">
+		<div class="container">
+			<ul class="list-unstyled navbar-nav">
+				<li class="nav-item">
+					<a href="{{ url('/') }}" class="navbar-brand">Laravel</a>
+				</li>
+				<li class="nav-item @if (\Request::is('test')) active @endif">
+					<a class="nav-link" href="{{ url('/test') }}">Register</a>
+				</li>
+				<li class="nav-item @if (\Request::is('vehicle_register')) active @endif">
+					<a class="nav-link" href="{{ url('/vehicle_register') }}">Vehicle Register</a>
+				</li>
+				<li class="nav-item @if (\Request::is('garbage_register')) active @endif">
+					<a class="nav-link" href="{{ url('/garbage_register') }}">Garbage Register</a>
+				</li>
+				<li class="nav-item @if (\Request::is('ajax')) active @endif">
+					<a class="nav-link" href="{{ url('/ajax') }}">Ajax</a>
+				</li>
+			</ul>
+			<ul class="list-unstyled navbar-nav">
+				@guest
+					<li class="nav-item @if (\Request::is('login')) active @endif">
+						<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
 					</li>
-					<li class="nav-item"> 				
-						<a class="nav-link" href="{{ url('/test') }}">Register</a>
-					</li>	
-					<li class="nav-item"> 
-						<a class="nav-link" href="{{ url('/vehicle_register') }}">Vehicle Register</a>
-					</li>	
-					<li class="nav-item"> 
-						<a class="nav-link" href="{{ url('/ajax') }}">Ajax</a>
+					<li class="nav-item @if (\Request::is('register')) active @endif">
+						@if (Route::has('register'))
+							<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+						@endif
 					</li>
-					<li class="nav-item"> 
-						<a class="nav-link" href="{{ url('/login') }}">Login</a>
-					</li>
+				@else
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						  Dropdown link
+						<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+							{{ Auth::user()->name }} <span class="caret"></span>
 						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">Action</a>
-							<a class="dropdown-item" href="#">Another action</a>
-							<div class="divider">
-								<a class="dropdown-item" href="#">Something else here</a>
-							</div>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{ route('logout') }}"
+							   onclick="event.preventDefault();
+											 document.getElementById('logout-form').submit();">
+								{{ __('Logout') }}
+							</a>
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+								@csrf
+							</form>
 						</div>
 					</li>
-				</ul>
-				<ul class="list-unstyled navbar-nav">
-					@guest
-						<li class="nav-item">
-							<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-						</li>
-						<li class="nav-item">
-							@if (Route::has('register'))
-								<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-							@endif
-						</li>
-					@else
-						<li class="nav-item dropdown">
-							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-								{{ Auth::user()->name }} <span class="caret"></span>
-							</a>
-							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="{{ route('logout') }}"
-								   onclick="event.preventDefault();
-												 document.getElementById('logout-form').submit();">
-									{{ __('Logout') }}
-								</a>
-								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-									@csrf
-								</form>
-							</div>
-						</li>
-					@endguest
-				</ul>
-            </div>
-        </nav>	
-    </div>
+				@endguest
+			</ul>
+		</div>
+	</nav>
 </div>
-<nav class="navbar navbar-dark bg-dark">
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#toggleBar" aria-controls="toggleBar" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-</nav>
 <main class="py-4">
 	@yield('content')
 </main>

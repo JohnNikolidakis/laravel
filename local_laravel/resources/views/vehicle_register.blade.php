@@ -4,14 +4,14 @@
 <form method="GET" action="vehicletable" class="needs-validation"  novalidate>
 	<div class="form-row">
 		<div class="col-sm-5">
-			<input type="text" name="licence" class="form-control" placeholder="Licence" required>
+			<input type="text" name="licence" class="form-control mb-2 ml-2" placeholder="Licence" required>
 		</div>
 		<div class="col-sm-5">
-			<input type="decimal" name="liters" class="form-control" placeholder="Liters" required>
+			<input type="decimal" name="liters" class="form-control ml-2" placeholder="Liters" required>
 		</div>
 	</div>
 	<div class="form-row">
-		<input type="submit" name="submit" value="Submit" class="btn btn-primary">
+		<input type="submit" name="submit" value="Submit" class="btn btn-primary ml-3">
 	</div>
 </form>
 @endsection

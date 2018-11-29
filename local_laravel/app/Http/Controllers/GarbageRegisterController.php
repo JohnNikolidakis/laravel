@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
@@ -15,7 +14,6 @@ class GarbageRegisterController extends Controller
 
 	public function store(Request $request)
     {
-
 		$type = $request->input('type');
 		$capacity = $request->input('capacity');
 		$bin = new garbage_bin_register;

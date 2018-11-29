@@ -1,19 +1,7 @@
 @extends('layouts.app')
-
 @section('content')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<style>
-	.title_td
-	{
-		font-weight:1000;
-		font-size:27px;
-	}
-	.td_sub
-	{
-		font-size:13px;
-	}
-</style>
 <div class="table-responsive">
 	<table class="table table-bordered table-striped" style="text-align:center;">
 		<tr>
