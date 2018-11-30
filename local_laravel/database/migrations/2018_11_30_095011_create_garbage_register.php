@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class GarbageBinRegister extends Migration
+class CreateGarbageRegister extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class GarbageBinRegister extends Migration
      */
     public function up()
     {
-		Schema::create('garbage_bin_register', function(Blueprint $table)
+        Schema::create('garbage_bin_register', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('type');
-			$table->integer('capacity');
+			$table->integer('max_capacity');
+			$table->integer('cur_capacity');
 			$table->timestamps();
 		});
-    }
-
+	}
     /**
      * Reverse the migrations.
      *

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name') }}</title>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts -->
@@ -32,6 +32,9 @@
 			<ul class="list-unstyled navbar-nav">
 				<li class="nav-item">
 					<a href="{{ url('/') }}" class="navbar-brand">Laravel</a>
+				</li>
+				<li class="nav-item @if (\Request::is('/')) active @endif">
+					<a class="nav-link" href="{{ url('/') }}">Main Page</a>
 				</li>
 				<li class="nav-item @if (\Request::is('test')) active @endif">
 					<a class="nav-link" href="{{ url('/test') }}">Register</a>

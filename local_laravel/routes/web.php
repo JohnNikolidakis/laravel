@@ -19,17 +19,19 @@ Route::get('/test','RegisterController@create')->middleware('auth');
 
 Route::get('/table','RegisterController@store')->middleware('auth');
 
-	Route::get('/garbage_register','GarbageRegisterController@create')->middleware('auth');
+Route::get('/garbage_register','GarbageRegisterController@create')->middleware('auth');
 
-	Route::get('/garbage_bin_table','GarbageRegisterController@store')->middleware('auth');
+Route::get('/garbage_bin_table','GarbageRegisterController@store')->middleware('auth');
+
+Route::get('/','GarbageRegisterController@mainpage');
 	
 Route::fallback(function() {
 	return view('not_found');
 })->middleware('auth');
 
-	Route::get('/vehicle_register','VehicleController@create')->middleware('auth');
+Route::get('/vehicle_register','VehicleController@create')->middleware('auth');
 
-	Route::get('/vehicletable','VehicleController@store')->middleware('auth');
+Route::get('/vehicletable','VehicleController@store')->middleware('auth');
 
 Route::get('ajax', function(){ return view('ajax'); })->middleware('auth');
 

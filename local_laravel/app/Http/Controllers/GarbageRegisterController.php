@@ -14,12 +14,18 @@ class GarbageRegisterController extends Controller
 
 	public function store(Request $request)
     {
-		$type = $request->input('type');
-		$capacity = $request->input('capacity');
+		$max_capacity = $request->input('max_capacity');
+		$cur_capacity = $request->input('cur_capacity');
 		$bin = new garbage_bin_register;
-		$bin->type = $type;
-		$bin->capacity = $capacity;
+		$bin->max_capacity = $max_capacity;
+		$bin->cur_capacity = $cur_capacity;
 		$bin->save();
 		return $this->retrieve();
+	}
+	
+	public function mainpage()
+	{
+		$bins = garbage_bin_register::all();
+		return view('welcome',['bins'=>$bins]);
 	}
 }

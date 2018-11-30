@@ -7,13 +7,13 @@
 <div class="table-responsive">
 	<table class="table table-bordered table-striped" style="text-align:center;" id="data-table">
 		<tr>
-			<td class="title_td">Type</td>
-			<td class="title_td">Capacity</td>
+			<td class="title_td">Maximum Capacity</td>
+			<td class="title_td">Current Capacity</td>
 		</tr>
 		@foreach($bin as $bins)
 		<tr {{ ($loop->first) ? "class=d-print-table-row" : "class=d-print-none" }}>
-			<td id='licence' class="td_sub">{{ $bins->type }}</td>
-			<td id='liters' class="td_sub">{{ $bins->capacity }}</td>
+			<td class="td_sub">{{ $bins->max_capacity }}</td>
+			<td class="td_sub">{{ $bins->cur_capacity }}</td>
 		</tr>
 		@endforeach
 	</table>
@@ -22,7 +22,6 @@
 	<input type="submit" value="Export to XLSX" class="btn btn-primary mr-4" onclick="xport('xlsx');">
 	<input type="submit" value="Export to XLS" class="btn btn-primary" onclick="xport('xls');">
 </div>
-<script type="javascript" src="xlsx.full.min.js"></script>
 <script>	
 function xport(type, dl)
 {
