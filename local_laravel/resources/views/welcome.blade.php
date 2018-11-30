@@ -40,24 +40,24 @@
 		<div class="row">
 			<div class="col-sm-3">
 				<img class="img-fluid img-thumbnail"
-					@if(  $bin->cur_capacity / $bin->max_capacity  == 0.25)
+					@if(  $bin->cur_capacity / $bin->max_capacity  == 0)
+						src="img/Polish_Garbage/polish_trash_can_0.png">
+					
+					@elseif(  $bin->cur_capacity / $bin->max_capacity  <= 0.25)
 						src="img/Polish_Garbage/polish_trash_can_25.png">
 						
-					@elseif(  $bin->cur_capacity / $bin->max_capacity  == 0.5)
+					@elseif(  $bin->cur_capacity / $bin->max_capacity  <= 0.5)
 						src="img/Polish_Garbage/polish_trash_can_50.png">
 						
-					@elseif(  $bin->cur_capacity / $bin->max_capacity  == 0.75)
+					@elseif(  $bin->cur_capacity / $bin->max_capacity  <= 0.75)
 						src="img/Polish_Garbage/polish_trash_can_75.png">
 						
-					@elseif(  $bin->cur_capacity / $bin->max_capacity  == 1)
+					@elseif(  $bin->cur_capacity / $bin->max_capacity  <= 1)
 						src="img/Polish_Garbage/polish_trash_can_100.png">
-						
-					@elseif(  $bin->cur_capacity / $bin->max_capacity  == 0)
-						src="img/Polish_Garbage/polish_trash_can_0.png">
 						
 					@endif
 			</div>
-				<p class="title_td">Max Capacity: {{ $bin->max_capacity }} <br> Current Capacity: {{ $bin->cur_capacity }}</p>
+			<p class="title_td">Max Capacity: {{ $bin->max_capacity }} <br> Current Capacity: {{ $bin->cur_capacity }}</p>
 		</div>
 		@endforeach
 	</div>

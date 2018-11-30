@@ -14,12 +14,14 @@ class GarbageRegisterController extends Controller
 
 	public function store(Request $request)
     {
+		$name = $request->input('name');
 		$max_capacity = $request->input('max_capacity');
 		$cur_capacity = $request->input('cur_capacity');
 		$bin = new garbage_bin_register;
 		$bin->max_capacity = $max_capacity;
 		$bin->cur_capacity = $cur_capacity;
-		$bin->save();
+		$bin->name = $name;
+		//$bin->save();
 		return $this->retrieve();
 	}
 	
@@ -27,5 +29,12 @@ class GarbageRegisterController extends Controller
 	{
 		$bins = garbage_bin_register::all();
 		return view('welcome',['bins'=>$bins]);
+	}
+	
+	public function search(Request $request)
+	{
+		$search = $request->input('search');
+	$result = DB::table('garbage_bin_register')->select(DB::raw("*"))->where('name', 'LIKE', "%{$search}%")->get();
+		return view('garbage_bin_table',['bin'=>$result]);
 	}
 }

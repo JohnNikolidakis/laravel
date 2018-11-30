@@ -4,10 +4,13 @@
 <form method="GET" action="garbage_bin_table" class="needs-validation"  novalidate>
 	<div class="form-row">
 		<div class="col-sm-5">
+			<input type="text" name="name" class="form-control ml-2 mb-2" placeholder="Name" required>
+		</div>
+		<div class="col-sm-5">
 			<input type="number" name="max_capacity" class="form-control ml-2" placeholder="Maximum Capacity" required>
 		</div>
 		<div class="col-sm-5">
-			<input type="number" name="cur_capacity" class="form-control ml-2" placeholder="Current Capacity" required>
+			<input type="number" name="cur_capacity" class="form-control ml-2 mb-2" placeholder="Current Capacity" required>
 		</div>
 	</div>
 	<div class="form-row">
