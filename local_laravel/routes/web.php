@@ -25,6 +25,8 @@ Route::get('/garbage_bin_table','GarbageRegisterController@store')->middleware('
 
 Route::get('/garbage_bin_table_search','GarbageRegisterController@search')->middleware('auth');
 
+Route::get('/garbage_bin_edit','GarbageRegisterController@edit')->middleware('auth');
+
 Route::get('/','GarbageRegisterController@mainpage');
 	
 Route::fallback(function() {

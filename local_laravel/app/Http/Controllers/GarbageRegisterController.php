@@ -21,7 +21,7 @@ class GarbageRegisterController extends Controller
 		$bin->max_capacity = $max_capacity;
 		$bin->cur_capacity = $cur_capacity;
 		$bin->name = $name;
-		//$bin->save();
+		$bin->save();
 		return $this->retrieve();
 	}
 	
@@ -34,7 +34,28 @@ class GarbageRegisterController extends Controller
 	public function search(Request $request)
 	{
 		$search = $request->input('search');
-	$result = DB::table('garbage_bin_register')->select(DB::raw("*"))->where('name', 'LIKE', "%{$search}%")->get();
+		$result = DB::table('garbage_bin_register')->select(DB::raw("*"))->where('name', 'LIKE', "%{$search}%")->get();
 		return view('garbage_bin_table',['bin'=>$result]);
+	}
+	
+	public function edit(Request $request)
+	{
+		$name = $request->input('name');
+		(is_null($request->input('new_name'))) ? $new_name = $name : $new_name = $request->input('new_name');
+		$max_capacity = $request->input('max_capacity');
+		$cur_capacity = $request->input('cur_capacity');
+		$result = DB::table('garbage_bin_register')->select(DB::raw("*"))->where('name', '=', $name)->get();
+		if(empty($result))
+		{
+			return view('garbage_bin_register');
+		}
+		else
+		{
+			if(is_null($max_capacity))
+				$res = DB::table('garbage_bin_register')->where('name',$name)->update(['name'=>$new_name, 'cur_capacity'=>$cur_capacity]);
+			else
+				$res = DB::table('garbage_bin_register')->where('name',$name)->update(['name'=>$new_name, 'max_capacity'=>$max_capacity, 'cur_capacity'=>$cur_capacity]);
+			return $this->retrieve();
+		}
 	}
 }
