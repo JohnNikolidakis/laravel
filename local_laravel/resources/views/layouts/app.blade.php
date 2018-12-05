@@ -45,7 +45,7 @@
 				<li class="nav-item @if (\Request::is('vehicle_register')) active @endif">
 					<a class="nav-link" href="{{ url('/vehicle_register') }}">Vehicle Register</a>
 				</li>
-				<li class="nav-item @if (\Request::is('garbage_register')) active @endif">
+				<li class="nav-item @if (\Request::is('garbage_register') or \Request::is('garbage_register_edit') or \Request::is('garbage_bin_table') or \Request::is('garbage_bin_edit')) active @endif">
 					<a class="nav-link" href="{{ url('/garbage_register') }}">Garbage Register</a>
 				</li>
 				<li class="nav-item @if (\Request::is('ajax')) active @endif">

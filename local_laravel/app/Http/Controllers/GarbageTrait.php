@@ -9,5 +9,7 @@ trait GarbageTrait
 		$bin = garbage_bin_register::all();
 		return view('garbage_bin_table',['bin'=>$bin]);
 	}
+	
+	
 }
 ?>

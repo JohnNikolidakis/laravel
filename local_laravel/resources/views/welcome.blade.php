@@ -22,30 +22,37 @@
 		{
 			width:100%;
 		}
+		
+		.card-container
+		{
+			width:60%;
+		}
 	</style>
 </head>
 <body>
 	<div class="container">
 		@foreach($bins as $bin)
 		<div class="row">
-			<div class="card text-white bg-secondary border-dark mb-3">
+			<div class="card text-white bg-secondary border-dark mb-3 card-container">
 				<div class="row m-0">
 					<div class="col-sm-4 p-0">
+						<img class="img-fluid img-thumbnail p-0" 
 							@if(  $bin->cur_capacity / $bin->max_capacity  == 0)
-								<img class="img-fluid img-thumbnail p-0" src="img/Polish_Garbage/polish_trash_can_0.png" data-html="true" data-toggle="tooltip" data-placement="left" title="Name: {{$bin->name }}<br>Max Capacity: {{ $bin->max_capacity }} <br> Current Capacity: {{ $bin->cur_capacity }}">
+								src="img/Polish_Garbage/polish_trash_can_0.png"
 							@elseif(  $bin->cur_capacity / $bin->max_capacity  <= 0.25)
-								<img class="img-fluid img-thumbnail p-0" src="img/Polish_Garbage/polish_trash_can_25.png" data-html="true" data-toggle="tooltip" data-placement="left" title="Name: {{$bin->name }}<br>Max Capacity: {{ $bin->max_capacity }} <br> Current Capacity: {{ $bin->cur_capacity }}">
+								src="img/Polish_Garbage/polish_trash_can_25.png"
 							@elseif(  $bin->cur_capacity / $bin->max_capacity  <= 0.5)
-								<img class="img-fluid img-thumbnail p-0" src="img/Polish_Garbage/polish_trash_can_50.png" data-html="true" data-toggle="tooltip" data-placement="left" title="Name: {{$bin->name }}<br>Max Capacity: {{ $bin->max_capacity }} <br> Current Capacity: {{ $bin->cur_capacity }}">
+								src="img/Polish_Garbage/polish_trash_can_50.png"
 							@elseif(  $bin->cur_capacity / $bin->max_capacity  <= 0.75)
-								<img class="img-fluid img-thumbnail p-0" src="img/Polish_Garbage/polish_trash_can_75.png" data-html="true" data-toggle="tooltip" data-placement="left" title="Name: {{$bin->name }}<br>Max Capacity: {{ $bin->max_capacity }} <br> Current Capacity: {{ $bin->cur_capacity }}">
+								src="img/Polish_Garbage/polish_trash_can_75.png"
 							@elseif(  $bin->cur_capacity / $bin->max_capacity  <= 1)
-								<img class="img-fluid img-thumbnail p-0" src="img/Polish_Garbage/polish_trash_can_100.png" data-html="true" data-toggle="tooltip" data-placement="left" title="Name: {{$bin->name }}<br>Max Capacity: {{ $bin->max_capacity }} <br> Current Capacity: {{ $bin->cur_capacity }}">
+								src="img/Polish_Garbage/polish_trash_can_100.png"
 							@endif
+						data-html="true" data-toggle="tooltip" data-placement="left" title="Name: {{$bin->name }}<br>Max Capacity: {{ $bin->max_capacity }} <br> Current Capacity: {{ $bin->cur_capacity }}">
 					</div>
 					<div class="col-md-8 p-0">
 						<div class="card-block">
-							<p class="title_td">Name: {{$bin->name }}<br>Max Capacity: {{ $bin->max_capacity }} <br> Current Capacity: {{ $bin->cur_capacity }}</p>
+							<p class="title_td ml-3 mt-2">Name: {{$bin->name }}<br>Max Capacity: {{ $bin->max_capacity }} <br> Current Capacity: {{ $bin->cur_capacity }}</p>
 						</div>
 					</div>
 				</div>

@@ -19,7 +19,7 @@
 	</div>
 </form>
 <h1 style="font-weight:bold" class="ml-3 mt-5">Edit garbage bin</h1>
-<form method="GET" action="garbage_bin_edit">
+<form method="GET" action="garbage_bin_edit" class="needs-validation"  novalidate>
 	<div class="form-row">
 		<div class="col-sm-5">
 			<input type="text" name="name" class="form-control ml-2 mb-2" placeholder="Name" required>
@@ -31,7 +31,7 @@
 			<input type="number" name="max_capacity" class="form-control ml-2" placeholder="New maximum Capacity">
 		</div>
 		<div class="col-sm-5">
-			<input type="number" name="cur_capacity" class="form-control ml-2 mb-2" placeholder="New current Capacity">
+			<input type="number" name="cur_capacity" class="form-control ml-2 mb-2" placeholder="New current Capacity" required>
 		</div>
 	</div>
 	<div class="form-row">
