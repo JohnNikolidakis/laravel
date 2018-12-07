@@ -13,26 +13,26 @@
 </style>
 </head>
 <div class="container mb-4">
-	<input type="submit" value="Export to XLSX" class="btn btn-primary" onclick="xport('xlsx');">
-	<input type="submit" value="Export to XLS" class="btn btn-primary ml-2" onclick="xport('xls');">
-	<button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#chartModal">Chart</button>
+	<input type="submit" value="{{ trans_choice('trash.export',0) }}" class="btn btn-primary" onclick="xport('xlsx');">
+	<input type="submit" value="{{ trans_choice('trash.export',1) }}" class="btn btn-primary ml-2" onclick="xport('xls');">
+	<button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#chartModal">{{ __('trash.chart') }}</button>
 	<form style="float:right" method="GET" action="garbage_bin_table_search">
-		<input class="form-control search_bar" type="text" placeholder="Search.." name="search">
-		<input type="submit" value="Submit" class="btn btn-primary ml-3">
+		<input class="form-control search_bar" type="text" placeholder="{{ __('trash.search') }}" name="search">
+		<input type="submit" value="{{ __('trash.submit') }}" class="btn btn-primary ml-3">
 	</form>
 </div>
 <div class="table-responsive">
 	<table class="table table-bordered table-striped" style="text-align:center;" id="data-table">
 		<tr>
-			<td class="title_td">Name</td>
-			<td class="title_td">Maximum Capacity</td>
-			<td class="title_td">Current Capacity</td>
+			<td class="title_td">{{ __('trash.name') }}</td>
+			<td class="title_td">{{ __('trash.max_capacity') }}</td>
+			<td class="title_td">{{ __('trash.cur_capacity') }}</td>
 		</tr>
 		@foreach($bin as $bins)
 		<tr {{ ($loop->first) ? "class=d-print-table-row" : "class=d-print-none" }}>
-			<td><a class="td_sub" href="garbage_register_edit?name={{ $bins->name }}&max_capacity={{ $bins->max_capacity }}&cur_capacity={{ $bins->cur_capacity }}">{{ $bins->name }}</a></td>
-			<td>{{ $bins->max_capacity }}</td>
-			<td>{{ $bins->cur_capacity }}</td>
+			<td><a onclick="post('{{ $bins->name }}', {{ $bins->max_capacity }}, {{ $bins->cur_capacity }});" class="td_sub">{{ $bins->name }}</a></td>
+			<td id="max_capacity">{{ $bins->max_capacity }}</td>
+			<td id="cur_capacity">{{ $bins->cur_capacity }}</td>
 		</tr>
 		@endforeach
 	</table>
@@ -43,14 +43,14 @@
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">Garbage bin chart</h5>
+				<h5 class="modal-title" id="exampleModalLongTitle">{{ __('trash.chart_title') }}</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
 			</div>
 			<div class="modal-body">
 				<div id="chart_div" width="100%" style="overflow:hidden"></div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('trash.close') }}</button>
 			</div>
 		</div>
 	</div>
@@ -77,11 +77,11 @@ function drawBasic()
 		legend: {position: 'top'},
 		hAxis:
 		{
-			title: 'Name',
+			title: "{{ __('trash.name') }}",
 		},
 		vAxis:
 		{
-			title: 'Capacity',
+			title: "{{ __('trash.capacity') }}",
 		}
 	};
 	var chart = new google.visualization.ColumnChart(
@@ -97,5 +97,16 @@ function xport(type, dl)
 		XLSX.write(wb, {bookType:type, bookSST:true, type: 'base64'}) :
 		XLSX.writeFile(wb,('garbage_register.' + (type || 'xlsx')));
 }
+
+function post(n, m, c)
+{
+	//alert(n);
+	$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+	$.ajax({
+        url: "garbage_post",
+        type:"POST",
+        data: { testdata: n }
+    });
+};
 </script>
 @endsection

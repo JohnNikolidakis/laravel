@@ -1,41 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 style="font-weight:bold" class="ml-3">Add new garbage bin</h1>
+<h1 style="font-weight:bold" class="ml-3"><label for="new_title">{{ __('trash.title_new') }}</label></h1>
 <form method="GET" action="garbage_bin_table" class="needs-validation"  novalidate>
 	<div class="form-row">
 		<div class="col-sm-5">
-			<input type="text" name="name" class="form-control ml-2 mb-2" placeholder="Name" required>
+			<input type="text" id="name" name="name" class="form-control ml-2 mb-2" placeholder="{{ __('trash.name') }}" required>
 		</div>
 		<div class="col-sm-5">
-			<input type="number" name="max_capacity" class="form-control ml-2" placeholder="Maximum Capacity" required>
+			<input type="number" name="max_capacity" class="form-control ml-2" placeholder="{{ __('trash.max_capacity') }}" required>
 		</div>
 		<div class="col-sm-5">
-			<input type="number" name="cur_capacity" class="form-control ml-2 mb-2" placeholder="Current Capacity" required>
+			<input type="number" name="cur_capacity" class="form-control ml-2 mb-2" placeholder="{{ __('trash.cur_capacity') }}" required>
 		</div>
 	</div>
 	<div class="form-row">
-		<input type="submit" name="submit" value="Submit" class="btn btn-primary ml-3">
+		<input type="submit" name="submit" value="{{ __('trash.submit') }}" class="btn btn-primary ml-3">
 	</div>
 </form>
-<h1 style="font-weight:bold" class="ml-3 mt-5">Edit garbage bin</h1>
+<h1 style="font-weight:bold" class="ml-3 mt-5">{{ __('trash.title_edit') }}</h1>
 <form method="GET" action="garbage_bin_edit" class="needs-validation"  novalidate>
 	<div class="form-row">
 		<div class="col-sm-5">
-			<input type="text" name="name" class="form-control ml-2 mb-2" placeholder="Name" required>
+			<input type="text" name="name" class="form-control ml-2 mb-2" placeholder="{{ __('trash.name') }}" required>
 		</div>
 		<div class="col-sm-5">
-			<input type="text" name="new_name" class="form-control ml-2 mb-2" placeholder="New name">
+			<input type="text" name="new_name" class="form-control ml-2 mb-2" placeholder="{{ __('trash.new_o') }}{{ __('trash.name') }}">
 		</div>
 		<div class="col-sm-5">
-			<input type="number" name="max_capacity" class="form-control ml-2" placeholder="New maximum Capacity">
+			<input type="number" name="max_capacity" class="form-control ml-2" placeholder="{{ __('trash.new') }}{{ __('trash.max_capacity') }}">
 		</div>
 		<div class="col-sm-5">
-			<input type="number" name="cur_capacity" class="form-control ml-2 mb-2" placeholder="New current Capacity" required>
+			<input type="number" name="cur_capacity" class="form-control ml-2 mb-2" placeholder="{{ __('trash.new') }}{{ __('trash.cur_capacity') }}" required>
 		</div>
 	</div>
 	<div class="form-row">
-		<input type="submit" name="submit" value="Submit" class="btn btn-primary ml-3">
+		<input type="submit" name="submit" value="{{ __('trash.submit') }}" class="btn btn-primary ml-3">
 	</div>
 </form>
 @endsection

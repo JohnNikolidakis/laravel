@@ -67,4 +67,10 @@ class GarbageRegisterController extends Controller
 		$edit['edit']=[$name,$max_capacity,$cur_capacity];
 		return view('garbage_bin_register_edit',['name'=>$name, 'max_capacity'=>$max_capacity, 'cur_capacity'=>$cur_capacity]);
 	}
+	
+	public function post(Request $request)
+	{
+		$bins = $request->data;
+		return view('garbage_bin_register_edit',['bins'=>$bins]);
+	}
 }

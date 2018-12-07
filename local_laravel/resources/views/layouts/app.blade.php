@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	<style>
@@ -37,22 +37,22 @@
 					<a href="{{ url('/') }}" class="navbar-brand">Laravel</a>
 				</li>
 				<li class="nav-item @if (\Request::is('/')) active @endif">
-					<a class="nav-link" href="{{ url('/') }}">Main Page</a>
+					<a class="nav-link" href="{{ url('/') }}">{{ __('layout.main') }}</a>
 				</li>
 				<li class="nav-item @if (\Request::is('test')) active @endif">
-					<a class="nav-link" href="{{ url('/test') }}">Register</a>
+					<a class="nav-link" href="{{ url('/test') }}">{{ __('layout.register') }}</a>
 				</li>
 				<li class="nav-item @if (\Request::is('vehicle_register')) active @endif">
-					<a class="nav-link" href="{{ url('/vehicle_register') }}">Vehicle Register</a>
+					<a class="nav-link" href="{{ url('/vehicle_register') }}">{{ __('layout.vehicle') }}</a>
 				</li>
 				<li class="nav-item @if (\Request::is('garbage_register') or \Request::is('garbage_register_edit') or \Request::is('garbage_bin_table') or \Request::is('garbage_bin_edit')) active @endif">
-					<a class="nav-link" href="{{ url('/garbage_register') }}">Garbage Register</a>
+					<a class="nav-link" href="{{ url('/garbage_register') }}">{{ __('layout.garbage') }}</a>
 				</li>
 				<li class="nav-item @if (\Request::is('ajax')) active @endif">
 					<a class="nav-link" href="{{ url('/ajax') }}">Ajax</a>
 				</li>
 			</ul>
-			<ul class="list-unstyled navbar-nav">
+			<ul class="list-unstyled navbar-nav ml-9">
 				@guest
 					<li class="nav-item @if (\Request::is('login')) active @endif">
 						<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -79,6 +79,10 @@
 						</div>
 					</li>
 				@endguest
+			</ul>
+			<ul style="color:white">
+				<li><a href="lang/en">English</a></li>
+				<li><a href="lang/el">Ελληνικά</a></li>
 			</ul>
 		</div>
 	</nav>

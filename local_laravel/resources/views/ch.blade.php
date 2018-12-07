@@ -1,9 +1,7 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 	<head>
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<script src="https://unpkg.com/moment" /></script>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-		<title>Google Visualization API Sample</title>
 	</head>
 	<body>
 		<div id="dashboard">
@@ -24,7 +22,6 @@ function drawVisualization()
 		'containerId': 'control',
 		'options':
 		{
-			// Filter by the date axis.
 			'filterColumnIndex': 0,
 			'ui':
 			{
@@ -34,18 +31,14 @@ function drawVisualization()
 					'chartArea': {'width': '90%'},
 					'hAxis': {'baselineColor': 'none', format: "dd.MM.yyyy" }
 				},
-				// Display a single series that shows the closing value of the stock.
-				// Thus, this view has two columns: the date (axis) and the stock value (line series).
 				'chartView':
 				{
 					'columns': [0, 1]
 				},
-				// 1 day in milliseconds = 24 * 60 * 60 * 1000 = 86,400,000
-				'minRangeSize': 86400000
+				'minRangeSize': 86400000	//One day
 			}
 		},
-		// Initial range: 2012-02-09 to 2012-03-20.
-		'state': {'range': {'start': new Date(2012, 1, 9), 'end': new Date(2012, 2, 20)}}
+		'state': {'range': {'start': new Date(2012, 0, 1), 'end': new Date(2012, 4, 29)}}
 	});
 
 	var chart = new google.visualization.ChartWrapper
@@ -54,7 +47,6 @@ function drawVisualization()
 		'containerId': 'chart',
 		'options':
 		{
-			// Use the same chart area width as the control for axis alignment.
 			'chartArea': {'height': '80%', 'width': '90%'},
 			'hAxis': {'slantedText': false},
 			'vAxis': {'viewWindow': {'min': 0, 'max': 2000}},
@@ -73,7 +65,7 @@ function drawVisualization()
 			}, 1]
 		}
 	});
-	
+
 	var data = new google.visualization.DataTable();
 	data.addColumn('date', 'Date');
 	data.addColumn('number', 'Stock');
@@ -86,9 +78,9 @@ function drawVisualization()
 		open = close;
 		close = Math.max(50, open + change);
 		low = Math.min(open, close) - (Math.cos(day * 1.7) + 1) * 15;
-		low = Math.max(0, low);
+		low = Math.round(Math.max(0, low));
 		var date = new Date(2012, 0 ,day);
-		data.addRow([date, Math.round(low)]);
+		data.addRow([date, low]);
 	}
 	dashboard.bind(control, chart);
 	dashboard.draw(data);
