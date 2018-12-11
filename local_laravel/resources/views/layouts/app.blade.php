@@ -7,7 +7,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') }}</title>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -16,6 +15,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
 	<style>
 	.title_td
 	{
@@ -39,10 +39,7 @@
 				<li class="nav-item @if (\Request::is('/')) active @endif">
 					<a class="nav-link" href="{{ url('/') }}">{{ __('layout.main') }}</a>
 				</li>
-				<li class="nav-item @if (\Request::is('test')) active @endif">
-					<a class="nav-link" href="{{ url('/test') }}">{{ __('layout.register') }}</a>
-				</li>
-				<li class="nav-item @if (\Request::is('vehicle_register')) active @endif">
+				<li class="nav-item @if (\Request::is('vehicle_register') or \Request::is('vehicletable')) active @endif">
 					<a class="nav-link" href="{{ url('/vehicle_register') }}">{{ __('layout.vehicle') }}</a>
 				</li>
 				<li class="nav-item @if (\Request::is('garbage_register') or \Request::is('garbage_register_edit') or \Request::is('garbage_bin_table') or \Request::is('garbage_bin_edit')) active @endif">
@@ -52,38 +49,50 @@
 					<a class="nav-link" href="{{ url('/ajax') }}">Ajax</a>
 				</li>
 			</ul>
-			<ul class="list-unstyled navbar-nav ml-9">
-				@guest
-					<li class="nav-item @if (\Request::is('login')) active @endif">
-						<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-					</li>
-					<li class="nav-item @if (\Request::is('register')) active @endif">
-						@if (Route::has('register'))
-							<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-						@endif
-					</li>
-				@else
-					<li class="nav-item dropdown">
-						<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-							{{ Auth::user()->name }} <span class="caret"></span>
-						</a>
-						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="{{ route('logout') }}"
-							   onclick="event.preventDefault();
-											 document.getElementById('logout-form').submit();">
-								{{ __('Logout') }}
-							</a>
-							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-								@csrf
-							</form>
+			<div width="30%">
+				<div class="row">
+					<div class="col">
+						<ul class="list-unstyled navbar-nav">
+							@guest
+								<li class="nav-item @if (\Request::is('login')) active @endif">
+									<a class="nav-link" href="{{ route('login') }}">{{ __('layout.login') }}</a>
+								</li>
+								<li class="nav-item @if (\Request::is('register')) active @endif">
+									@if (Route::has('register'))
+										<a class="nav-link" href="{{ route('register') }}">{{ __('layout.register') }}</a>
+									@endif
+								</li>
+							@else
+								<li class="nav-item dropdown">
+									<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+										{{ Auth::user()->name }} <span class="caret"></span>
+									</a>
+									<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item" href="{{ route('logout') }}"
+										   onclick="event.preventDefault();
+														 document.getElementById('logout-form').submit();">
+											{{ __('layout.logout') }}
+										</a>
+										<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+											@csrf
+										</form>
+									</div>
+								</li>
+							@endguest
+						</ul>
+					</div>
+					<div class="col">
+						<div class="dropdown">
+							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{ __('layout.lang') }}
+							<span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li><a href="lang/en">English</a></li>
+								<li><a href="lang/el">Ελληνικά</a></li>
+							</ul>
 						</div>
-					</li>
-				@endguest
-			</ul>
-			<ul style="color:white">
-				<li><a href="lang/en">English</a></li>
-				<li><a href="lang/el">Ελληνικά</a></li>
-			</ul>
+					</div>
+				</div>
+			</div>
 		</div>
 	</nav>
 </div>

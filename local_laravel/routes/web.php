@@ -16,10 +16,6 @@ Route::fallback(function() {
 
 Route::get('/', function () {return view('welcome');});
 
-Route::get('/test','RegisterController@create')->middleware('auth');
-
-Route::get('/table','RegisterController@store')->middleware('auth');
-
 //Garbage
 Route::get('/garbage_register','GarbageRegisterController@create')->middleware('auth');
 Route::get('/garbage_bin_table','GarbageRegisterController@store')->middleware('auth');

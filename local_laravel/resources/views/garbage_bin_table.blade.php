@@ -30,7 +30,7 @@
 		</tr>
 		@foreach($bin as $bins)
 		<tr {{ ($loop->first) ? "class=d-print-table-row" : "class=d-print-none" }}>
-			<td><a onclick="post('{{ $bins->name }}', {{ $bins->max_capacity }}, {{ $bins->cur_capacity }});" class="td_sub">{{ $bins->name }}</a></td>
+			<td><a id="name" class="td_sub">{{ $bins->name }}</a></td>
 			<td id="max_capacity">{{ $bins->max_capacity }}</td>
 			<td id="cur_capacity">{{ $bins->cur_capacity }}</td>
 		</tr>
@@ -98,15 +98,31 @@ function xport(type, dl)
 		XLSX.writeFile(wb,('garbage_register.' + (type || 'xlsx')));
 }
 
-function post(n, m, c)
-{
-	//alert(n);
+
+ $(document).ready(function()
+ {
+	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+	$("#name").click(function()
+	{
+		$.ajax(
+		{
+			url: '/garbage_post',
+			type: 'POST',
+			data: {_token: CSRF_TOKEN, message:$("#name").val()},
+			dataType: 'JSON',
+			success: function (data)
+			{ 
+				alert(data.msg); 
+			}
+		}); 
+	});
+});
+	/*
 	$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
 	$.ajax({
         url: "garbage_post",
         type:"POST",
         data: { testdata: n }
-    });
-};
+    });*/
 </script>
 @endsection

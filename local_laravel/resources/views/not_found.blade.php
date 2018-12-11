@@ -1,6 +1,6 @@
 <html>
 <body>
-<h1>404<br>PAGE NOT FOUND</h1><br>
-<a href="http://localhost/local_laravel/public">Go Home</a>
+<h1>404<br>{{ __('general.not_found') }}</h1><br>
+<a href="http://localhost/laravel/local_laravel/public">{{ __('general.gohome') }}</a>
 </body>
 </html>

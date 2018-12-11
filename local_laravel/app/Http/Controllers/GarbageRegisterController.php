@@ -70,7 +70,7 @@ class GarbageRegisterController extends Controller
 	
 	public function post(Request $request)
 	{
-		$bins = $request->data;
+		$bins = $request->message;
 		return view('garbage_bin_register_edit',['bins'=>$bins]);
 	}
 }

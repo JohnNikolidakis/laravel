@@ -47,6 +47,7 @@ function drawVisualization()
 		'containerId': 'chart',
 		'options':
 		{
+			'focusTarget': 'category',
 			'chartArea': {'height': '80%', 'width': '90%'},
 			'hAxis': {'slantedText': false},
 			'vAxis': {'viewWindow': {'min': 0, 'max': 2000}},
