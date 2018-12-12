@@ -45,6 +45,9 @@
 				<li class="nav-item @if (\Request::is('garbage_register') or \Request::is('garbage_register_edit') or \Request::is('garbage_bin_table') or \Request::is('garbage_bin_edit')) active @endif">
 					<a class="nav-link" href="{{ url('/garbage_register') }}">{{ __('layout.garbage') }}</a>
 				</li>
+				<li class="nav-item @if (\Request::is('canvas')) active @endif">
+					<a class="nav-link" href="{{ url('/canvas') }}">Canvas</a>
+				</li>
 				<li class="nav-item @if (\Request::is('ajax')) active @endif">
 					<a class="nav-link" href="{{ url('/ajax') }}">Ajax</a>
 				</li>
