@@ -14,6 +14,8 @@ return
 	'password' => 'Password',
 	'confirm' => 'Confirm password',
 	'remember' => 'Remember me',
-	'forgot' => 'Forgot my password'
+	'forgot' => 'Forgot my password',
+	'chart' => 'Chart',
+	'canvas' => 'Canvas',
 ]
 ?>

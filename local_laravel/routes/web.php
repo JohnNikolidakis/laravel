@@ -14,18 +14,18 @@ Route::fallback(function() {
 	return view('not_found');
 })->middleware('auth');
 
+//Main page
 Route::get('/', function () {return view('welcome');});
 
+//Canvas
 Route::get('/canvas','CanvasController@create');
-
 
 //Garbage
 Route::get('/garbage_register','GarbageRegisterController@create')->middleware('auth');
 Route::get('/garbage_bin_table','GarbageRegisterController@store')->middleware('auth');
 Route::get('/garbage_bin_table_search','GarbageRegisterController@search')->middleware('auth');
 Route::get('/garbage_bin_edit','GarbageRegisterController@edit')->middleware('auth');
-Route::get('/garbage_register_edit','GarbageRegisterController@registerEdit')->middleware('auth');
-Route::post('/garbage_post','GarbageRegisterController@post')->middleware('auth');
+Route::get('/garbage_edit/{name}/{max}/{cur}','GarbageRegisterController@editFilled')->middleware('auth');
 Route::get('/','GarbageRegisterController@mainpage');
 
 //Vehicle
@@ -38,6 +38,7 @@ Route::post('/postajax','AjaxController@post')->middleware('auth');
 
 //Chart
 Route::get('chart','chartController@create')->middleware('auth');
+Route::post('chart_post','chartController@chart')->middleware('auth');
 Route::get('ch', function(){ return view('ch'); })->middleware('auth');
 
 Route::get('lang/{locale}',function($locale)

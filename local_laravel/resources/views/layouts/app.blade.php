@@ -15,6 +15,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 	<style>
 	.title_td
@@ -45,8 +46,11 @@
 				<li class="nav-item @if (\Request::is('garbage_register') or \Request::is('garbage_register_edit') or \Request::is('garbage_bin_table') or \Request::is('garbage_bin_edit')) active @endif">
 					<a class="nav-link" href="{{ url('/garbage_register') }}">{{ __('layout.garbage') }}</a>
 				</li>
+				<li class="nav-item @if (\Request::is('chart')) active @endif">
+					<a class="nav-link" href="{{ url('/chart') }}">{{ __('layout.chart') }}</a>
+				</li>
 				<li class="nav-item @if (\Request::is('canvas')) active @endif">
-					<a class="nav-link" href="{{ url('/canvas') }}">Canvas</a>
+					<a class="nav-link" href="{{ url('/canvas') }}">{{ __('layout.canvas') }}</a>
 				</li>
 				<li class="nav-item @if (\Request::is('ajax')) active @endif">
 					<a class="nav-link" href="{{ url('/ajax') }}">Ajax</a>

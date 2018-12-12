@@ -3,7 +3,6 @@
 <head>
 <script type="text/javascript" src="//unpkg.com/file-saver@1.3.3/FileSaver.js"></script>
 <script type="text/javascript" src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <style>
 	.search_bar
 	{
@@ -27,13 +26,13 @@
 			<td class="title_td">{{ __('trash.name') }}</td>
 			<td class="title_td">{{ __('trash.max_capacity') }}</td>
 			<td class="title_td">{{ __('trash.cur_capacity') }}</td>
-		</tr>
+		</tr {{ $x=0 }}>
 		@foreach($bin as $bins)
 		<tr {{ ($loop->first) ? "class=d-print-table-row" : "class=d-print-none" }}>
-			<td><a id="name" class="td_sub">{{ $bins->name }}</a></td>
+			<td><a id="name_{{ $x }}" href="garbage_edit/{{ $bins->name }}/{{ $bins->max_capacity }}/{{ $bins->cur_capacity }}" class="td_sub">{{ $bins->name }}</a></td>
 			<td id="max_capacity">{{ $bins->max_capacity }}</td>
 			<td id="cur_capacity">{{ $bins->cur_capacity }}</td>
-		</tr>
+		</tr{{ $x++}}>
 		@endforeach
 	</table>
 </div>
@@ -97,32 +96,5 @@ function xport(type, dl)
 		XLSX.write(wb, {bookType:type, bookSST:true, type: 'base64'}) :
 		XLSX.writeFile(wb,('garbage_register.' + (type || 'xlsx')));
 }
-
-
- $(document).ready(function()
- {
-	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-	$("#name").click(function()
-	{
-		$.ajax(
-		{
-			url: '/garbage_post',
-			type: 'POST',
-			data: {_token: CSRF_TOKEN, message:$("#name").val()},
-			dataType: 'JSON',
-			success: function (data)
-			{ 
-				alert(data.msg); 
-			}
-		}); 
-	});
-});
-	/*
-	$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
-	$.ajax({
-        url: "garbage_post",
-        type:"POST",
-        data: { testdata: n }
-    });*/
 </script>
 @endsection

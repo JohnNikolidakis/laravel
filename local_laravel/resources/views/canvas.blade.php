@@ -8,40 +8,18 @@
 		height: auto;
 		position:absolute;
 	}
-	
-	canvas
+
+	.bordereds
 	{
-	  width: 100%;
-	  height: auto;
+		border: 1px solid black;
 	}
 </style>
 <body>
-	<div class="container ml-0">
-		<div class="row">
-			<div class="col-2">
-				Max Capacity:
-			</div>
-			<div class="col-2">
-				<input type="number" name="capacity">
-			</div>
-		</div>
-		<div class="row mt-3">
-			<div class="col-2">
-				Current capacity:
-			</div>
-			<div class="col-2">
-				<input type="number" name="now">
-			</div>
-		</div>
-		<div class="row mt-3">
-		    <button type="button" id="refresh" class="btn btn-primary mb-3">Refresh</button>
-		</div>
-	</div>
 	<div class="container ml-0" {{$c=0}}>
 		@foreach($bins as $bin)
 		<div class="row" style="height:250px">
-				<div class="col-md-3">
-					<img src="img/garbage_bin.png" class="resize img-fluid" id="garb">
+				<div class="col-md-3 mr-3 bordereds">
+					<img src="img/garbage_bin.png" class="resize img-fluid" id="garb" data-html="true" data-toggle="tooltip" data-placement="left" title="{{ __('layout.name') }}: {{$bin->name }}<br>{{ __('trash.max_capacity') }}: {{ $bin->max_capacity }} <br> {{ __('trash.cur_capacity') }}: {{ $bin->cur_capacity }}">
 					<canvas id="myCanvas_{{$c}}" width="313px" height="234px" class="resize"></canvas>
 					<canvas id="placeholder_canvas_{{$c}}" width="313px" height="234px"  class="resize"></canvas>
 					<script>
@@ -50,6 +28,9 @@
 							create_perc({{$bin->max_capacity}}, {{$bin->cur_capacity}});
 						});
 					</script>
+				</div>
+				<div class="col-md-8 p-0 bordereds">
+						<p class="title_td ml-3 mt-2">{{ __('layout.name') }}: {{$bin->name }}<br>{{ __('trash.max_capacity') }}: {{ $bin->max_capacity }} <br> {{ __('trash.cur_capacity') }}: {{ $bin->cur_capacity }}</p>
 				</div>
 			</div {{$c++}}>
 		@endforeach
