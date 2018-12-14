@@ -21,8 +21,9 @@ Route::get('/', function () {return view('welcome');});
 Route::get('/canvas','CanvasController@create');
 
 //Garbage
-Route::get('/garbage_register','GarbageRegisterController@create')->middleware('auth');
-Route::get('/garbage_bin_table','GarbageRegisterController@store')->middleware('auth');
+Route::get('/garbage_register','GarbageRegisterController@create')->middleware('auth')->name('garbage_register');
+Route::get('/garbage_bin_table','GarbageRegisterController@retrieve')->middleware('auth');
+Route::get('/garbage_bin_insert','GarbageRegisterController@store')->middleware('auth');
 Route::get('/garbage_bin_table_search','GarbageRegisterController@search')->middleware('auth');
 Route::get('/garbage_bin_edit','GarbageRegisterController@edit')->middleware('auth');
 Route::get('/garbage_edit/{name}/{max}/{cur}','GarbageRegisterController@editFilled')->middleware('auth');

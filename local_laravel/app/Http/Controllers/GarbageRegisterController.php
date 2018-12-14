@@ -11,7 +11,7 @@ class GarbageRegisterController extends Controller
 	{
 		return view('garbage_bin_register');
 	}
-
+	
 	public function store(Request $request)
     {
 		$name = $request->input('name');

@@ -12,6 +12,7 @@
 </style>
 </head>
 <div class="container mb-4">
+	<a href="garbage_register" class="btn btn-primary">{{ __('trash.new_garb') }}</a>
 	<input type="submit" value="{{ trans_choice('trash.export',0) }}" class="btn btn-primary" onclick="xport('xlsx');">
 	<input type="submit" value="{{ trans_choice('trash.export',1) }}" class="btn btn-primary ml-2" onclick="xport('xls');">
 	<button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#chartModal">{{ __('trash.chart') }}</button>

@@ -2,23 +2,25 @@
 @section('content')
 <button class="btn btn-primary" onclick="post('asc');">Ascending chart</button>
 <button class="btn btn-primary" onclick="post('desc');">Descending chart</button>
+<p id="success"></p>
 <div id="chart_div_asc"></div>
-<p id="success_asc"></p>
 <div id="chart_div_desc"></div>
-<p id="success_desc"></p>
+
 
 <script>
  $(document).ready(function()
 {
+	google.charts.load('current', {packages: ['corechart', 'bar']});
 	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 	$.ajaxSetup({data:{_token: CSRF_TOKEN}});
-	//post('asc');
-	//post('desc');
+	var ajax_asc = post('asc');
+	var ajax_desc = post('desc');
+	$.when(ajax_asc, ajax_desc).always(function(){ $('#success').html('Loading finished'); });
 });
 
 function post(x)
 {
-	$.ajax
+	return $.ajax
 	({
 		url:'chart_post',
 		type: 'POST',
@@ -26,12 +28,10 @@ function post(x)
 		dataType: 'JSON',
 		success: function (data)
 		{ 
-			$('#success_'+x).html('Loading finished');
 			drawAnnotations(data, x);
 		}
 	});
 }
-google.charts.load('current', {packages: ['corechart', 'bar']});
 
 function drawAnnotations(datas, x)
 {

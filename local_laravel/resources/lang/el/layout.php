@@ -6,7 +6,7 @@ return
 	'vehicle' => 'Μητρώο Οχημάτων',
 	'garbage' => 'Μητρώο Κάδων',
 	'login' => 'Σύνδεση	',
-	'lang' => 'Αλλαγή γλώσσας',
+	'lang' => 'Change language',
 	'logout' => 'Αποσύσνδεση',
 	'login' => 'Σύνδεση',
 	'name' => 'Όνομα',

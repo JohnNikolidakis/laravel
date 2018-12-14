@@ -6,7 +6,7 @@ return
 	'vehicle' => 'Vehicle register',
 	'garbage' => 'Garbage register',
 	'login' => 'Login',
-	'lang' => 'Change language',
+	'lang' => 'Αλλαγή γλώσσας',
 	'logout' => 'Logout',
 	'login' => 'Login',
 	'name' => 'Name',
